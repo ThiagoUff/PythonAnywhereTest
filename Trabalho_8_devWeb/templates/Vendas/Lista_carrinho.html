@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Carrinho
+{% endblock %}
+
+{% block conteudo %}
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="titulo mb-0">Carrinho</h4>
+            <hr class="mt-2 mb-4">
+        </div>
+    </div>
+
+    {% if lista_de_carrinhos %}
+        <br>
+        <div class="text-center"><h4>Lista de Produtos</h4></div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table style="width:100%" class="table table-striped table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="texto text-center">Categoria</th>
+                                <th class="texto text-center">Nome</th>
+                                <th class="texto text-center">Preço</th>
+                                <th class="texto text-center">Cotas Atuais</th>
+                                <th class="texto text-center">Cotas</th>
+                                <th class="texto text-center">Remover</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for carrinho in lista_de_carrinhos %}
+                                <tr>
+                                    <td width="20%" class="text-left">
+                                        <span class="texto">
+                                            {{ carrinho.produto.categoria }}
+                                        </span>
+                                    </td>
+                                    <td width="35%" class="text-left">
+                                        <span class="texto">
+                                            <a href="{% url 'Site:exibe_produto' carrinho.produto.id %}">{{ carrinho.produto.nome }}</a>
+                                        </span>
+                                    </td>
+                                    <td width="15%" class="text-right">
+                                        <span class="texto mr-4">
+                                            {{ carrinho.preco }}
+                                        </span>
+                                    </td>
+                                    <td width="15%" class="text-right">
+                                        <span class="texto mr-4">
+                                            {{ carrinho.cotas }}
+                                        </span>
+                                    </td>
+                                     <td width="10%" class="text-center">
+                                        <input type="text" class="form-control" id="produto_qtd" placeholder="cotas">
+
+                                    </td>
+                                    <td width="20%" class="text-center">
+                                        <form style="margin-bottom: 0px;"
+                                              action ="{% url 'Site:RemoveprodutoCarrinho' %}"
+                                              method ="post" novalidate>
+                                            {% csrf_token %}
+                                            <button style="margin-top: 0px; margin-bottom: 0px; padding-top: 3px; padding-bottom: 3px;"
+                                                    type="button" class="btn btn-sm btn-primary btn-removerProd" >
+                                              Remover
+                                            </button>
+
+                                            <input type='hidden' name='produto_id' value='{{ carrinho.produto.id }}'>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% include 'Vendas/barra_de_paginacao.html' %}
+    {% else %}
+
+    {% endif %}
+
+
+{% endblock %}
+
+{% block domready %}
+
+
+{% endblock %}
+

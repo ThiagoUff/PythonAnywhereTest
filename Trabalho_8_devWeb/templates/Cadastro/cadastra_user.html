@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Pagina principal
+{% endblock %}
+
+{% block conteudo %}
+<br/>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="titulo mb-0">Cadastro de Usuários</h4>
+            <hr class="mt-2 mb-4">
+        </div>
+    </div>
+    <form id="formulario" action ="{% url 'Site:cadastra_User' %}" method ="POST" novalidate>
+        <div class="form-group row" style="margin-bottom: 10px;" hidden>
+            <label for="id" class="col-lg-2 col-form-label font-weight-bold">id</label>
+            <div class="col-lg-10">
+                {{ form.id }}
+                {% if form.id.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.id.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {# <input type="hidden" name="User_id" id="id_User_id" value="xxx"> #}
+
+        <div class="form-group row" style="margin-bottom: 10px;">
+            <label for="id_nome" class="col-lg-2 col-form-label font-weight-bold">Nome</label>
+            <div class="col-lg-10">
+                {{ form.nome }}
+                {% if form.nome.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.nome.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {#  <input type="text"                               #}
+        {#     name="nome"                                   #}
+        {#     id="id_nome"                                  #}
+        {#     class="form-control form-control-sm"          #}
+        {#     maxlength="50"                                #}
+        {#     required>                                     #}
+
+
+
+        <div class="form-group row" style="margin-bottom: 10px;">
+            <label for="id_email" class="col-lg-2 col-form-label font-weight-bold">Email</label>
+            <div class="col-lg-10">
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.email.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {#  <input type="text"                               #}
+        {#     name="email"                                  #}
+        {#     id="id_email"                                 #}
+        {#     class="form-control form-control-sm"          #}
+        {#     maxlength="50"                                #}
+        {#     required>                                     #}
+
+        <div class="form-group row" style="margin-bottom: 10px;">
+            <label for="id_cpf" class="col-lg-2 col-form-label font-weight-bold">CPF</label>
+            <div class="col-lg-10">
+                {{ form.cpf }}
+                {% if form.cpf.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.cpf.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {#  <input type="text"                               #}
+        {#     name="cpf"                                    #}
+        {#     id="id_cpf"                                   #}
+        {#     class="form-control form-control-sm"          #}
+        {#     maxlength="50"                                #}
+        {#     required>                                     #}
+
+
+
+        <div class="form-group row" style="margin-bottom: 10px;">
+            <label for="id_endereco" class="col-lg-2 col-form-label font-weight-bold">Endereco</label>
+            <div class="col-lg-10">
+                {{ form.endereco }}
+                {% if form.endereco.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.endereco.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {#  <input type="text"                               #}
+        {#     name="endereco"                                #}
+        {#     id="id_endereco"                               #}
+        {#     class="form-control form-control-sm"          #}
+        {#     maxlength="50"                                #}
+        {#     required>                                     #}
+
+
+
+        <div class="form-group row mb-2">
+            <label for="id_data_cadastro" class="col-lg-2 col-form-label font-weight-bold">Data de Cadastro</label>
+            <div class="col-lg-3">
+                {{ form.data_cadastro }}
+                {% if form.data_cadastro.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.data_cadastro.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-lg-7"></div>
+        </div>
+
+        <div class="form-group" style="margin-top: 20px;">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-2">
+                    {% csrf_token %}
+                    <button id="botao" type="button" class="btn btn-primary">
+                        <img src="{% static caminhos.cadastro_1 %}">
+                        {% if acao == 'inclusao' %}
+                            Cadastrar User
+                        {% else %}
+                            Alterar User
+                        {% endif %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+{% endblock %}
+

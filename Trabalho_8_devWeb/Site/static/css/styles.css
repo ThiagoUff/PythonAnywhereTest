@@ -1,0 +1,21 @@
+body{
+    background-color: rgb(238, 239, 239);
+    padding-bottom:200px;
+}
+.navbar{
+    background-color: rgb(44, 44, 44);
+}
+footer{
+    position:absolute;
+    height:60px;
+    background-color: rgb(44, 44, 44);
+    padding: 50px;
+}
+.sideItem{
+    border-bottom: 1px solid black;
+    padding-top: 5px;
+}
+.footerParagrath{
+    color: white;
+    font-size: 14px;
+}

@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Cadastro de Produtos
+{% endblock %}
+
+{% block estilo %}
+
+{% endblock %}
+
+{% block conteudo %}
+    <br>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="titulo mb-0">Cadastro de Produtos</h4>
+            <hr class="mt-2 mb-4">
+        </div>
+    </div>
+
+    <form id="inclusao" action ="{% url 'Site:cadastra_produto' %}" method ="POST" novalidate>
+
+        <div class="form-group row mb-2">
+            <label for="id_categoria" class="col-lg-2 col-form-label font-weight-bold">Categoria</label>
+            <div class="col-lg-10">
+                {{ form.categoria }}
+        {#      <select name="categoria" class="form-control form-control-sm" required="" id="id_categoria">   #}
+        {#          <option value="" selected="">--- Selecione uma categoria ---</option>                      #}
+        {#          <option value="1">Eletrodoméstico</option>                                                 #}
+        {#          <option value="2">Celular</option>                                                         #}
+        {#          <option value="3">Computador</option>                                                      #}
+        {#      </select>                                                                                      #}
+                {% if form.categoria.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.categoria.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label for="id_nome" class="col-lg-2 col-form-label font-weight-bold">Nome</label>
+            <div class="col-lg-10">
+                {{ form.nome }}
+        {#      <input type="text" name="nome"                                                            #}
+        {#             class="form-control form-control-sm" maxlength="120" required="" id="id_nome">     #}
+                {% if form.nome.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.nome.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label for="id_preco" class="col-lg-2 col-form-label font-weight-bold">Preço</label>
+            <div class="col-lg-10">
+                {{ form.preco }}
+                {% if form.preco.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.preco.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label for="id_estoque" class="col-lg-2 col-form-label font-weight-bold">Estoque</label>
+            <div class="col-lg-10">
+                {{ form.estoque }}
+                {% if form.estoque.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.estoque.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <div class="custom-control custom-checkbox">
+                    {{ form.disponivel }}
+                    <label class="custom-control-label font-weight-bold" for="id_disponivel">
+                        Disponível
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label for="id_data_de_cadastro" class="col-lg-2 col-form-label font-weight-bold">Data de Cadastro</label>
+            <div class="col-lg-3">
+                {{ form.data_de_cadastro }}
+                {% if form.data_de_cadastro.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.data_de_cadastro.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-lg-7"></div>
+        </div>
+
+        <div class="form-group row" style="margin-top: 20px;">
+            <div class="col-lg-10 offset-lg-2">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary"><img src="{% static 'Site/images/skin/database_save.png' %}">
+                    Cadastrar Produto
+                </button>
+            </div>
+        </div>
+
+    </form>
+    <br>
+    <div id="ajax">
+        {% include 'produto/lista_de_produtos.html' %}
+    </div>
+    <br/>
+    <br/>
+    <br/>
+{% endblock %}
+
+
+{% block domready %}
+
+    $("#id_data_de_cadastro").datepicker({
+{#        minDate: new Date(1950, 0, 1),#}
+{#        maxDate: new Date({{ ano_atual }}, {{ mes_atual }} - 1, {{ dia_atual }}),#}
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+        dayNamesMin: ['D','S','T','Q','Q','S','S','D'],
+        dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],
+        monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+        monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+        nextText: 'Próximo',
+        prevText: 'Anterior',
+        showOn: "focus",
+    });
+
+    $("#id_data_de_cadastro").mask("00/00/0000");
+    var ids_dos_produtos = {{ ids_dos_produtos }}
+
+    $("#inclusao").submit(function(e) {
+        e.preventDefault()
+        let url = $(this).attr('action')
+        let formData = $(this).serializeArray()
+        console.log(formData)
+        $.post(url, formData, function(resposta) {
+            let conteudo = $(resposta).find("#tbody tr:first")
+            $("#tabela tbody tr:last").before("<tr style='display: none'>" + $(conteudo).html() + "</tr>")
+            $("tr:hidden").fadeIn('slow')
+            let total = $(resposta).find("#valor-do-estoque")
+            $("#valor-do-estoque").text($(total).text())
+            let id = $(conteudo).find("td:first").text()
+            id = parseInt(id)
+            console.log(ids_dos_produtos)
+            ids_dos_produtos.push(id)
+            console.log(ids_dos_produtos)
+        })
+    })
+
+    $("#ajax").on("click", "button.btn-remove", function() {
+        let form = $(this).parent();
+        let tr = $(form).parent().parent();
+        let ind = $(tr).index();
+        let valor_id = ids_dos_produtos[ind];
+        let input = "<input type='hidden' name='produto_id' value='" + valor_id + "'>";
+        $(form).append(input);
+        let url = $(form).attr('action')
+        let formData = $(form).serializeArray()
+        $.post(url, formData, function(resposta) {
+            $(tr).fadeTo('slow', 0.3, function() {
+                $(tr).remove()
+                ids_dos_produtos.splice(ind, 1)
+                $("#valor-do-estoque").text(resposta)
+            })
+        })
+    })
+
+    $("#ajax").on("blur", "input.estoque", function() {
+        if ($(this).val() <= 0) {
+            $(this).focus()
+            return
+        }
+        let form = $(this).parent();
+        let tr = $(form).parent().parent();
+        let ind = $(tr).index();
+        let valor_id = ids_dos_produtos[ind];
+        let input = "<input type='hidden' name='produto_id' value='" + valor_id + "'>";
+        $(form).append(input);
+        let url = $(form).attr('action')
+        let formData = $(form).serializeArray()
+        $.post(url, formData, function(resposta) {
+            $("#valor-do-estoque").text(resposta)
+        })
+    })
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Pagina principal
+{% endblock %}
+
+{% block conteudo %}
+    <br/>
+     <div style="margin-bottom: 15px;">
+        <div class="text-left">
+            <h4 class="titulo" style="margin-bottom: 0px;">Cadastro de Usuario</h4>
+            <hr style="margin-top: 10px; margin-bottom: 0px;">
+        </div>
+    </div>
+
+    {% if messages %}
+        <div class="row mb-3">
+            <div class="col-12">
+                {% for message in messages %}
+                    <ul class="list-group rounded border border-{% if message.tags == 'info' %}info{% else %}danger{% endif %}">
+                        {# Supondo a utilização de apenas info e danger #}
+                        <li style="padding-top: 7px; padding-bottom: 7px;" class="list-group-item list-group-item-{% if message.tags == 'info' %}info{% else %}danger{% endif %}">
+                            {{ message }}
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+
+        <div class="col-lg-2">
+            <span class="texto"><b>Nome: </b></span>
+        </div>
+        <div class="col-lg-10">
+            <span class="texto">{{ user.nome }}</span>
+        </div>
+
+        <div class="col-lg-2">
+            <span class="texto"><b>Email: </b></span>
+        </div>
+        <div class="col-lg-10">
+            <span class="texto">{{ user.email }}</span>
+        </div>
+
+        <div class="col-lg-2">
+            <span class="texto"><b>CPF: </b></span>
+        </div>
+        <div class="col-lg-10">
+            <span class="texto">{{ user.cpf }}</span>
+        </div>
+
+         <div class="col-lg-2">
+            <span class="texto"><b>Endereço: </b></span>
+        </div>
+        <div class="col-lg-10">
+            <span class="texto">{{ user.endereco }}</span>
+        </div>
+
+        <div class="col-lg-2">
+            <span class="texto"><b>Data de cadastro: </b></span>
+        </div>
+        <div class="col-lg-10">
+            <span class="texto">{{ user.data_cadastro_masc }}</span>
+        </div>
+    </div>
+
+    {% if remove_user_form %}
+        <div class="form-group" style="margin-top: 10px; margin-bottom: 0px;">
+            <div class="row">
+                <div class="col-lg-12 form-inline">
+                    <a id="botao_editar" style="margin-right: 15px;" href="{% url 'Site:edita_user' user.id %}" style="margin-top: 0px" class="btn btn-primary">
+                        <img src="{% static caminhos.exibir_1 %}"/>
+                        Editar
+                    </a>
+                    &nbsp;
+                    <form id="remove_user_form" style="margin-bottom: 0px; margin-top: 0px;" action ="{% url 'Site:remove_user' %}" method ="POST" novalidate>
+                        {% csrf_token %}
+                        <div class="form-group row" style="margin-bottom: 10px;" hidden>
+                            <input type="hidden" name="User_id" id="id_User_id" value="{{ remove_user_form }}">
+                        </div>
+                        <button id="botao_remover" style="margin-top: 0px;" type="button" class="btn btn-danger">
+                            <img src="{% static caminhos.exibir_2 %}"/> Remover
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+{% endblock %}

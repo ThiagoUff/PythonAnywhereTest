@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Pagina principal
+{% endblock %}
+
+{% block conteudo %}
+<br/>
+    <div class="row">
+        <div class="col-md-2">
+            <img src="{% static caminhos.Home_Bar_1 %}" width="140" height="40" border="0">
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-4"><img alt="br" src="{% static caminhos.Home_Bar_2 %}" ></div>
+                <div class="col-md-8"><p>IBOVESPA</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><p>+0,3%</p></div>
+                <div class="col-md-8"><p>76.436</p></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-4"><img alt="us" src="{% static caminhos.Home_Bar_3 %}" ></div>
+                <div class="col-md-8"><p>DÓLAR</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><p>-0,20%</p></div>
+                <div class="col-md-8"><p>R$ 4,09</p></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-4"><img alt="us" src="{% static caminhos.Home_Bar_3 %}" ></div>
+                <div class="col-md-8"><p>NASDAQ</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><p>+0,3%</p></div>
+                <div class="col-md-8"><p>76.436</p></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-4"><img alt="br" src="{% static caminhos.Home_Bar_2 %}" ></div>
+                <div class="col-md-8"><p>IFIX</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><p>+0,3%</p></div>
+                <div class="col-md-8"><p>76.436</p></div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="row">
+                <div class="col-md-4"><img alt="eu" src="{% static caminhos.Home_Bar_4 %}" ></div>
+                <div class="col-md-8"><p>EURO</p></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><p>+0,3%</p></div>
+                <div class="col-md-8"><p>76.436</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <h3>
+                TOP 10 MAIS LIDAS
+            </h3>
+            <div class="sideItem">
+                <p>NOVO LEVANTAMENTO</p>
+                <p>
+                    Bolsonaro sobe de 26% para 30% dos votos e lidera isolado; Ciro desponta no 2º lugar, diz pesquisa
+                </p>
+            </div>
+            <div class="sideItem">
+                <p>ELEIÇÕES 2018</p>
+                <p>
+                    Após atentado, Bolsonaro cresce entre mulheres e mais pobres, mostra pesquisa
+                </p>
+            </div>
+            <div class="sideItem">
+                <p>AGENDA DE PESQUISAS</p>
+                <p>
+                    Datafolha, Ibope, Ipespe e mais pesquisas eleitorais serão divulgadas nesta semana; confira datas previstas
+                </p>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <div class="card-group">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card mb-4">
+                            <img class="card-img-top rounded" src="{% static caminhos.Home_1 %}" alt="Candidatos">
+                            <div class="card-body">
+                                <h4 class="card-title">Corrida Eleitoral</h4>
+                                <a href="noticia" class="card-text">O Datafolha: Bolsonaro passa de 22% para 24% e 4 candidatos ficam embolados em segundo lugar.
+                                Ciro Gomes, Marina Silva, Geraldo Alckmin e Fernando Haddad empatam tecnicamente no segundo lugar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="card mb-4 p-4">
+                            <img class="card-img-overlay rounded" src="{% static caminhos.Home_2 %}" alt="WorkShop">
+                            <div class="card-body" style="margin-left: 200px;">
+                                <h4 class="card-title">
+                                    WorkShop Gratuito
+                                </h4>
+                                <p class="card-text">
+                                    É hoje! Roxo ensina a operar volatilidade, uma das estratégias mais rentáveis da história
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="card mb-4 p-4">
+                            <img class="card-img-overlay rounded" src="{% static caminhos.Home_3 %}" alt="WorkShop">
+                            <div class="card-body" style="margin-left: 200px;">
+                                <h4 class="card-title">
+                                    Carteira Semanal
+                                </h4>
+                                <p class="card-text">
+
+                                    XP recomenda compra de Minerva, Vale e outras 3 ações para esta semana
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

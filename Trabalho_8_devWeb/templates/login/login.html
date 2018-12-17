@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+    Pagina principal
+{% endblock %}
+
+{% block conteudo %}
+    <br/>
+
+    <div class="row py-5">
+        <div class="col-md-6 ">
+            <h4>Cadastre-se e aproveite as vantagens do InfoMoney</h4>
+            <p>Ganhe acesso gratuito a todo o conteúdo editorial da InfoMoney, ferramentas financeiras, newsletters, alertas de notícias e muito mais! </p>
+            <h5><i class="text-im-brow fa fa-check-circle" aria-hidden="true"></i> Cursos Online</h5>
+            <h5><i class="text-im-brow fa fa-check-circle" aria-hidden="true"></i> Ferramentas</h5>
+            <h5><i class="text-im-brow fa fa-check-circle" aria-hidden="true"></i> Alertas de notícias</h5>
+            <h5><i class="text-im-brow fa fa-check-circle" aria-hidden="true"></i> Conteúdos Especiais</h5>
+            <p>Faça parte do maior portal de finanças e investimentos do Brasil! </p>
+        </div>
+        <div class="col-md-6">
+            <a style="margin-left: 30%" class="navbar-brand px-lg-4 mr-0" href="index.html">
+                <img src="{% static caminhos.base_1 %}" alt="InfoMoney">
+            </a>
+            <div class="row p-3" style="border-style: solid; border-width: 2px 0px ; ">
+                <div class="col-md-4">
+                    <i class="fa fa-youtube-play fa-2x" style="color: black ;font-size:24px ;margin-left: 30%"></i>
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-google-plus fa-2x" style="color: black ;font-size:24px;margin-left: 30%"></i>
+                </div>
+                <div class="col-md-4">
+                    <i class="fa fa-linkedin fa-2x" style="color: black ;font-size:24px;margin-left: 30%"></i>
+                </div>
+            </div>
+            <p>Ou entre usando seu email de login</p>
+            <div class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+
+            <div class="form-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-block btn-primary">Login</button>
+            <p>Esqueceu a senha?</p>
+            <p style="text-align: center"> Não tem conta?</p>
+            <button type="submit" class="btn btn-block btn-info"><a href="/cadastro/">Criar uma conta</a></button>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

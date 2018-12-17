@@ -1,0 +1,157 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block titulo %}Trabalho dev web{% endblock %}</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+    <div class="container">
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse justify-content-center font-weight-bold" id="basicExampleNav">
+
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cursos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Relatórios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Notícias</a>
+                </li>
+
+            </ul>
+            <!-- Links -->
+
+            <!-- Navbar brand -->
+            <a class="navbar-brand px-lg-4 mr-0" href="">
+                <img src="{% static caminhos.base_1 %}" alt="InfoMoney">
+            </a>
+
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="../listar_produto/">Cotações</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ferramentas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Carrinho/">Carrinho de Compras</a>
+                </li>
+            </ul>
+            <!-- Links -->
+
+        </div>
+    </div>
+</nav>
+    <div class="container">
+        {% block conteudo %}
+
+        {% endblock %}
+    </div>
+
+
+<footer class="fixed-bottom">
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-md-2'>
+
+            </div>
+
+            <div class='col-md-8'>
+                <div class="row">
+                   <div class="col-md-7">
+                       <div class="row">
+                           <div class="col-md-2">
+                               <a href="cadastro.html" class="footerParagrath">Cadastre-se</a>
+                           </div>
+                           <div class="col-md-2">
+                               <p class="footerParagrath">Anuncie/licencie</p>
+                           </div>
+                           <div class="col-md-2">
+                               <p class="footerParagrath">Fale Conosco</p>
+                           </div>
+                           <div class="col-md-4">
+                               <p class="footerParagrath">Termos e condições de acesso</p>
+                           </div>
+                           <div class="col-md-2">
+                               <p class="footerParagrath">App InfoMoney</p>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <i class="fa fa-facebook" style="color: white ;font-size:24px"></i>
+                            </div>
+                            <div class="col-md-1">
+                                <i class="fa fa-twitter fa-2x" style="color: white ;font-size:24px"></i>
+                            </div>
+                            <div class="col-md-1">
+                                <i class="fa fa-youtube-play fa-2x" style="color: white ;font-size:24px"></i>
+                            </div>
+                            <div class="col-md-1  mr-1">
+                                <i class="fa fa-google-plus fa-2x" style="color: white ;font-size:24px"></i>
+                            </div>
+                            <div class="col-md-1">
+                                <i class="fa fa-linkedin fa-2x" style="color: white ;font-size:24px"></i>
+                            </div>
+                            <div class="col-md-1">
+                                <i class="fa fa-instagram fa-2x" style="color: white ;font-size:24px"></i>
+
+                            </div>
+                            <div class="col-md-1">
+                                <i class="fa fa-rss-square fa-2x" style="color: white ;font-size:24px"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <img src="{% static caminhos.base_1 %}" alt="InfoMoney">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class='col-md-2'>
+
+            </div>
+
+
+        </div>
+    </div>
+</footer>
+
+    <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.mask.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/Cadastro.js' %}"></script>
+    <script src="{% static 'js/Exibir.js' %}"></script>
+    <script src="{% static 'js/vendas.js' %}"></script>
+
+
+</nav>
+</body>
+</html>

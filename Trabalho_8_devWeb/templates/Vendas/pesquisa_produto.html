@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+   Compra de cotas de fundos
+{% endblock %}
+
+{% block conteudo %}
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <h4 class="titulo mb-0">Compra de cotas de fundos</h4>
+            <hr class="mt-2 mb-4">
+        </div>
+    </div>
+
+    {% if lista_de_produtos %}
+        <br>
+        <div class="text-center"><h4>Lista de Produtos</h4></div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table style="width:100%" class="table table-striped table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="texto text-center">Categoria</th>
+                                <th class="texto text-center">Nome</th>
+                                <th class="texto text-center">Preço</th>
+                                <th class="texto text-center">Cotas</th>
+                                <th class="texto text-center">Comprar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for produto in lista_de_produtos %}
+                                <tr>
+                                    <td width="20%" class="text-left">
+                                        <span class="texto">
+                                            {{ produto.categoria }}
+                                        </span>
+                                    </td>
+                                    <td width="35%" class="text-left">
+                                        <span class="texto">
+                                            <a href="{% url 'Site:exibe_produto' produto.id %}">{{ produto.nome }}</a>
+                                        </span>
+                                    </td>
+                                    <td width="15%" class="text-right">
+                                        <span class="texto mr-4">
+                                            {{ produto.preco }}
+                                        </span>
+                                    </td>
+
+                                     <td width="10%" class="text-center">
+                                        <input type="text" class="form-control" id="produto_qtd" placeholder="cotas">
+
+                                    </td>
+                                    <td width="20%" class="text-center">
+                                        <form style="margin-bottom: 0px;"
+                                              action ="{% url 'Site:SalvaprodutoCarrinho' %}"
+                                              method ="post" novalidate>
+                                            {% csrf_token %}
+                                            <button style="margin-top: 0px; margin-bottom: 0px; padding-top: 3px; padding-bottom: 3px;"
+                                                    type="button" class="btn btn-sm btn-primary btn-comprar" >
+                                              Comprar
+                                            </button>
+
+                                            <input type='hidden' name='produto_id' value='{{ produto.id }}'>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% include 'Vendas/barra_de_paginacao.html' %}
+    {% endif %}
+
+{% endblock %}
+
+{% block domready %}
+
+
+{% endblock %}
+
